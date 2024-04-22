@@ -1,0 +1,206 @@
+
+
+body{
+
+    background-color: hsl(295, 98%, 17%);
+}
+
+h1{
+    color: hsl(0, 0%, 100%);
+    text-shadow: 2px 5px 5px black;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* HEADER */
+
+
+header{
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos hacia la izquierda */
+    align-items: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Centra el texto horizontalmente dentro del div */
+
+}
+
+/* HEADER Smartphones */
+
+@media (max-width: 767px){
+
+  header{
+      display:inline-block;
+  }
+  
+  h1{
+      font-size: 40px;
+  }
+
+}
+
+
+
+/* NAV */
+
+
+/* barra de navegacion*/
+.navbar {
+    list-style-type: none; /*Elimina los puntos de la lista no ordenada*/
+    background-color: hsl(0, 0%, 99%);
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    height: 100px;
+  
+  }
+  
+  /* Crea espacio entre los elementos de la lista*/
+  .navbar li{
+    margin: 60px;
+    margin-top: 0px;
+    float: left;
+  }
+
+  
+  /* Color al seleccionar una opcion de la navegacion*/
+  .navbar a:hover{
+    background-color: hsl(0, 1%, 23%);
+  }
+  
+  ul li {
+    display: block;
+    margin-bottom: 10px; /* Espacio entre los elementos */
+  }
+  
+  
+    /* Texto de la barra de navegacion*/
+    .navbar a{
+        color: hsl(0, 0%, 0%);
+        display: block;
+        text-align: center;
+        font-size: 70px;
+        font-family: Arial, Helvetica, sans-serif
+    }
+  
+  
+  ul li {
+    display: block;
+    margin-bottom: 0px; /* Espacio entre los elementos */
+  }
+
+
+  /* NAV Smartphones */
+  
+  @media (max-width: 767px){
+
+    .navbar a{
+        font-size: 13px;
+    }
+  
+    .navbar li{
+        margin: 7px;
+    }
+  
+    .navbar {
+        height: 50px;
+    
+    }
+  
+  }
+
+  /* NAV Tabletas pequeñas */
+  @media (min-width: 768px) and (max-width: 1023px){
+
+    .navbar a{
+      font-size: 30px;
+  }
+
+  .navbar li{
+      margin: 15px;
+  }
+
+  .navbar {
+      height: 80px;
+  
+  }
+    
+  }
+
+  /* NAV Laptops y tabletas grandes */
+
+  @media(min-width: 1024px) and (max-width: 1439px){
+  
+
+    .navbar a{
+        font-size: 40px;
+    }
+  
+    .navbar li{
+        margin: 15px;
+    }
+  
+    .navbar {
+        height: 100px;
+    
+    }
+  }
+
+  /* FOOTER */
+
+  footer{
+  
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px;
+    margin-bottom: 0px;
+    padding: 20px;
+    flex-shrink: 0; /* Evita que el footer se encoja cuando hay poco contenido */
+  }
+  
+  
+  main{
+  
+    flex: 1;
+  }
+
+
+
+  /* LOGO CARRITO DE COMPRAS */
+
+
+  #carritoCompras{
+    margin-left: 1100px;
+  }
+
+
+  /* LOGO CARRITO Smartphones */
+  
+  @media (max-width: 767px){
+
+    #carritoCompras{
+      margin-left: 5px;
+      margin-bottom: 40px;
+    }
+  
+  
+  }
+
+  /* LOGO CARRITO Tabletas pequeñas */
+  @media (min-width: 768px) and (max-width: 1023px){
+
+    #carritoCompras{
+      margin-left: 100px;
+    }
+  }
+
+
+  /* LOGO CARRITO Laptops y tabletas grandes */
+
+  @media(min-width: 1024px) and (max-width: 1439px){
+
+    #carritoCompras{
+      margin-left: 500px;
+    }
+
+  }
