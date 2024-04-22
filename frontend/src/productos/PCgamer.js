@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 
 function PCgamer(){
@@ -17,7 +17,7 @@ function PCgamer(){
                 <img alt =""class ="imagenProducto" src = "../imagenes/productos/pcgamerOne.jpg"/>
                 <p class = "nombre">PC GAMER 1</p>
                 <p class="precio">$10500</p>
-                <button class="botonProducto"onclick="agregarCarrito('PC GAMER 1', 10500, 'prod_PrN82LhKIlUIuA')">Agregar a Carrito</button>
+                <button class="botonProducto" onclick="agregarCarrito('PC GAMER 1', 10500, 'prod_PrN82LhKIlUIuA')">Agregar a Carrito</button>
             </div>
             <hr/>
 
@@ -57,7 +57,6 @@ function PCgamer(){
 
         </div><br/><br/>
         <hr/>
-
     </main>
     </>);
 }
