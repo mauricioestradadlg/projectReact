@@ -44,15 +44,34 @@ function App() {
                     <Route path="/" element={<Inicio />} />
                     <Route path="/aboutus" element={<AboutUs />} />
                     <Route path="/catalogo" element={<Catalogo />} />
+
+                    
                     <Route
                         path="/catalogo/pcgamer"
                         element={<PCgamer agregarAlCarrito={agregarAlCarrito} />}
                     />
-                    <Route path="/catalogo/tecladogamer" element={<Tecladogamer />} />
-                    <Route path="/catalogo/mousegamer" element={<Mousegamer />} />
-                    <Route path="/catalogo/headsetgamer" element={<Headsetgamer />} />
-                    <Route path="/catalogo/microfonogamer" element={<Microfonogamer />} />
-                    <Route path="/catalogo/monitorgamer" element={<Monitorgamer />} />
+                    <Route 
+                        path="/catalogo/mousegamer" 
+                        element={<Mousegamer  agregarAlCarrito={agregarAlCarrito}  />} 
+                    />
+                    <Route 
+                        path="/catalogo/tecladogamer" 
+                        element={<Tecladogamer agregarAlCarrito={agregarAlCarrito} />} 
+                    />
+                    <Route 
+                        path="/catalogo/headsetgamer" 
+                        element={<Headsetgamer agregarAlCarrito={agregarAlCarrito} />} 
+                    />
+                    <Route 
+                        path="/catalogo/microfonogamer" 
+                        element={<Microfonogamer agregarAlCarrito={agregarAlCarrito} />} 
+                    />
+                    <Route 
+                        path="/catalogo/monitorgamer" 
+                        element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} 
+                    />
+
+
                     <Route path="/contacto" element={<Contacto />} />
                     {/* Redirecciona al carrito después de agregar un producto */}
                     <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />

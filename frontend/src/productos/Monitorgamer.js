@@ -2,65 +2,45 @@
 
 
 
-function Monitorgamer(){
+import React from 'react';
+
+function Monitorgamer({ agregarAlCarrito }) {
+    const productos = [
+        { id: 'prod_PuDtsyvnUyFDYz', nombre: 'MONITOR GAMER 1', precio: 2999 },
+        { id: 'prod_PuDuXULggLmRea', nombre: 'MONITOR GAMER 2', precio: 3499 },
+        { id: 'prod_PuDwkJZ7aOVPok', nombre: 'MONITOR GAMER 3', precio: 3999 },
+        { id: 'prod_PuDymHjkqFQ8kc', nombre: 'MONITOR GAMER 4', precio: 4599 },
+        { id: 'prod_PuDyIeiZ6hojYi', nombre: 'MONITOR GAMER 5', precio: 4999 },
+    ];
+
+    const handleClickAgregar = (producto) => {
+        agregarAlCarrito(producto);
+    };
 
     return (
-    <>
-    <main id = "mainP">
-
-        <h1 id = "h1P">MONITOR GAMER</h1><br/><br/>
-
-        <div class="container">
-            <h2 id = "h2P">Catálogo de Productos</h2>
-            <hr/>
-
-            <div class="producto" data-product-id="prod_PuDtsyvnUyFDYz">
-                <img alt =""class ="imagenProducto" src = "../imagenes/productos/monitorGamer1.jpg"/>
-                <p class = "nombre">MONITOR GAMER 1</p>
-                <p class="precio">$2999</p>
-                <button class="botonProducto"onclick="agregarCarrito('MONITOR GAMER 1', 2999, 'prod_PuDtsyvnUyFDYz')">Agregar a Carrito</button>
-            </div>
-            <hr/>
-
-            <div class="producto" data-product-id="prod_PuDuXULggLmRea">
-                <img alt =""class ="imagenProducto" src = "../imagenes/productos/monitorGamer2.jpg"/>
-                <p class = "nombre">MONITOR GAMER 2</p>
-                <p class="precio">$3499</p>
-                <button class="botonProducto"onclick="agregarCarrito('MONITOR GAMER 2', 3499, 'prod_PuDuXULggLmRea')">Agregar a Carrito</button>
-            </div>
-            <hr/>
-
-            <div class="producto" data-product-id="prod_PuDwkJZ7aOVPok">
-                <img alt =""class ="imagenProducto" src = "../imagenes/productos/monitorGamer3.jpg"/>
-                <p class = "nombre">MONITOR GAMER 3</p>
-                <p class="precio">$3999</p>
-                <button class="botonProducto"onclick="agregarCarrito('MONITOR GAMER 3', 3999, 'prod_PuDwkJZ7aOVPok')">Agregar a Carrito</button>
-            </div>
-            <hr/>
-
-            <div class="producto" data-product-id="prod_PuDymHjkqFQ8kc">
-                <img alt =""class ="imagenProducto" src = "../imagenes/productos/monitorGamer4.jpg"/>
-                <p class = "nombre">MONITOR GAMER 4</p>
-                <p class="precio">$4599</p>
-                <button class="botonProducto"onclick="agregarCarrito('MONITOR GAMER 4', 4599, 'prod_PuDymHjkqFQ8kc')">Agregar a Carrito</button>
-            </div>
-            <hr/>
-
-            <div class="producto" data-product-id="prod_PuDyIeiZ6hojYi">
-                <img alt =""class ="imagenProducto" src = "../imagenes/productos/monitorGamer5.jpg"/>
-                <p class = "nombre">MONITOR GAMER 5</p>
-                <p class="precio">$4999</p>
-                <button class="botonProducto"onclick="agregarCarrito('MONITOR GAMER 5', 4999, 'prod_PuDyIeiZ6hojYi')">Agregar a Carrito</button>
-            </div>
-            
-
-            
-        </div><br/><br/>
-        <hr/>
-
-        </main>
-    </>);
+        <>
+            <main id="mainP">
+                <h1 id="h1P">HEADSET GAMER</h1><br /><br />
+                <div className="container">
+                    <h2 id="h2P">Catálogo de Productos</h2>
+                    <hr />
+                    {productos.map((producto) => (
+                        <div key={producto.id} className="producto" data-product-id={producto.id}>
+                            <img alt="" className="imagenProducto" src={`../imagenes/productos/microfonoGamer${producto.id.slice(-1)}.jpg`} />
+                            <p className="nombre">{producto.nombre}</p>
+                            <p className="precio">${producto.precio}</p>
+                            <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>
+                                Agregar a Carrito
+                            </button>
+                        </div>
+                    ))}
+                    <hr />
+                </div>
+                <br /><br />
+                <hr />
+            </main>
+        </>
+    );
 }
 
-
-export default Monitorgamer
+export default Monitorgamer;

@@ -1,65 +1,44 @@
 
 
+import React from 'react';
 
-function Microfonogamer(){
+function Microfonogamer({ agregarAlCarrito }) {
+    const productos = [
+        { id: 'prod_PuDacfus0p6kyp', nombre: 'MICROFONO GAMER 1', precio: 999 },
+        { id: 'prod_PuDbi0XFfRF2w4', nombre: 'MICROFONO GAMER 2', precio: 1099 },
+        { id: 'prod_PuDdHRY7sygWa9', nombre: 'MICROFONO GAMER 3', precio: 1199 },
+        { id: 'prod_PuDfc3y7Dd9JRi', nombre: 'MICROFONO GAMER 4', precio: 1299 },
+        { id: 'prod_PuDglHPEsmcQPm', nombre: 'MICROFONO GAMER 5', precio: 1399 },
+    ];
+
+    const handleClickAgregar = (producto) => {
+        agregarAlCarrito(producto);
+    };
 
     return (
-    <>
-    <main id = "mainP">
-
-<h1 id = "h1P">MICROFONO GAMER</h1><br/><br/>
-
-<div class="container">
-    <h2 id = "h2P">Catálogo de Productos</h2>
-    <hr/>
-
-    <div class="producto" data-product-id="">
-        <img alt =""class ="imagenProducto" src = "../imagenes/productos/microfonoGamer1.jpg"/>
-        <p class = "nombre">MICROFONO GAMER 1</p>
-        <p class="precio">$999</p>
-        <button class="botonProducto"onclick="agregarCarrito('MICROFONO GAMER 1', 999, '')">Agregar a Carrito</button>
-    </div>
-    <hr/>
-
-    <div class="producto" data-product-id="">
-        <img alt =""class ="imagenProducto" src = "../imagenes/productos/microfonoGamer2.jpg"/>
-        <p class = "nombre">MICROFONO GAMER 2</p>
-        <p class="precio">$1099</p>
-        <button class="botonProducto"onclick="agregarCarrito('MICROFONO GAMER 2', 1099, '')">Agregar a Carrito</button>
-    </div>
-    <hr/>
-
-    <div class="producto" data-product-id="">
-        <img alt =""class ="imagenProducto" src = "../imagenes/productos/microfonoGamer3.jpg"/>
-        <p class = "nombre">MICROFONO GAMER 3</p>
-        <p class="precio">1199</p>
-        <button class="botonProducto"onclick="agregarCarrito('MICROFONO GAMER 3', 1199, '')">Agregar a Carrito</button>
-    </div>
-    <hr/>
-
-    <div class="producto" data-product-id="">
-        <img alt =""class ="imagenProducto" src = "../imagenes/productos/microfonoGamer4.jpg"/>
-        <p class = "nombre">MICROFONO GAMER 4</p>
-        <p class="precio">$1299</p>
-        <button class="botonProducto"onclick="agregarCarrito('MICROFONO GAMER 4', 1299, '')">Agregar a Carrito</button>
-    </div>
-    <hr/>
-
-    <div class="producto" data-product-id="">
-        <img alt =""class ="imagenProducto" src = "../imagenes/productos/microfonoGamer5.jpg"/>
-        <p class = "nombre">MICROFONO GAMER 5</p>
-        <p class="precio">$1399</p>
-        <button class="botonProducto"onclick="agregarCarrito('MICROFONO GAMER 5', 1399, '')">Agregar a Carrito</button>
-    </div>
-    
-
-    
-</div><br/><br/>
-<hr/>
-
-</main>
-    </>);
+        <>
+            <main id="mainP">
+                <h1 id="h1P">HEADSET GAMER</h1><br /><br />
+                <div className="container">
+                    <h2 id="h2P">Catálogo de Productos</h2>
+                    <hr />
+                    {productos.map((producto) => (
+                        <div key={producto.id} className="producto" data-product-id={producto.id}>
+                            <img alt="" className="imagenProducto" src={`../imagenes/productos/microfonoGamer${producto.id.slice(-1)}.jpg`} />
+                            <p className="nombre">{producto.nombre}</p>
+                            <p className="precio">${producto.precio}</p>
+                            <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>
+                                Agregar a Carrito
+                            </button>
+                        </div>
+                    ))}
+                    <hr />
+                </div>
+                <br /><br />
+                <hr />
+            </main>
+        </>
+    );
 }
 
-
-export default Microfonogamer
+export default Microfonogamer;

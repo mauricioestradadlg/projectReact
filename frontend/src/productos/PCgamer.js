@@ -22,7 +22,7 @@ function PCgamer({ agregarAlCarrito }) {
                     <hr />
                     {productos.map((producto) => (
                         <div key={producto.id} className="producto" data-product-id={producto.id}>
-                            <img alt="" className="imagenProducto" src={`../imagenes/productos/pcgamer${producto.id.slice(-1)}.jpg`} />
+                            <img alt="" className="imagenProducto" src={`../imagenes/productos/pcGamer${producto.id.slice(-1)}.jpg`} />
                             <p className="nombre">{producto.nombre}</p>
                             <p className="precio">${producto.precio}</p>
                             <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>
