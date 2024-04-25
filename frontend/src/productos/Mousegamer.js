@@ -2,11 +2,11 @@ import React from 'react';
 
 function Mousegamer({ agregarAlCarrito }) {
     const productos = [
-        { id: 'prod_PtsQvxTyqAq0f5', nombre: 'MOUSE GAMER 1', precio: 599 },
-        { id: 'prod_PtsSkiDcizj0nl', nombre: 'MOUSE GAMER 2', precio: 699 },
-        { id: 'prod_PtsU3D3YzP4q3z', nombre: 'MOUSE GAMER 3', precio: 799 },
-        { id: 'prod_PtsW8O6NcexAlU', nombre: 'MOUSE GAMER 4', precio: 899 },
-        { id: 'prod_PtsZQukZybkPDy', nombre: 'MOUSE GAMER 5', precio: 999 },
+        { id: 'prod_PtsQvxTyqAq0f5', nombre: 'MOUSE GAMER 1', precio: 599, imagen: '../imagenes/productos/mouseGamer1.jpg' },
+        { id: 'prod_PtsSkiDcizj0nl', nombre: 'MOUSE GAMER 2', precio: 699, imagen: '../imagenes/productos/mouseGamer2.jpg' },
+        { id: 'prod_PtsU3D3YzP4q3z', nombre: 'MOUSE GAMER 3', precio: 799, imagen: '../imagenes/productos/mouseGamer3.jpg' },
+        { id: 'prod_PtsW8O6NcexAlU', nombre: 'MOUSE GAMER 4', precio: 899, imagen: '../imagenes/productos/mouseGamer4.jpg' },
+        { id: 'prod_PtsZQukZybkPDy', nombre: 'MOUSE GAMER 5', precio: 999, imagen: '../imagenes/productos/mouseGamer5.jpeg' },
     ];
 
     const handleClickAgregar = (producto) => {
@@ -22,7 +22,7 @@ function Mousegamer({ agregarAlCarrito }) {
                     <hr />
                     {productos.map((producto) => (
                         <div key={producto.id} className="producto" data-product-id={producto.id}>
-                            <img alt="" className="imagenProducto" src={`../imagenes/productos/mouseGamer${producto.id.slice(-1)}.jpg`} />
+                            <img alt="" className="imagenProducto" src={producto.imagen} />
                             <p className="nombre">{producto.nombre}</p>
                             <p className="precio">${producto.precio}</p>
                             <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>

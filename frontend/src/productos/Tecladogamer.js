@@ -2,11 +2,11 @@ import React from 'react';
 
 function Tecladogamer({ agregarAlCarrito }) {
     const productos = [
-        { id: 'prod_PuDQYe0hcx48z2', nombre: 'TECLADO GAMER 1', precio: 999 },
-        { id: 'prod_PuDRUuoyTkTJdo', nombre: 'TECLADO GAMER 2', precio: 1099 },
-        { id: 'prod_PuDTQqknceSYgD', nombre: 'TECLADO GAMER 3', precio: 1199 },
-        { id: 'prod_PuDV1h90zWq4bK', nombre: 'TECLADO GAMER 4', precio: 1299 },
-        { id: 'prod_PuDWxMBNNZ1vvZ', nombre: 'TECLADO GAMER 5', precio: 1399 },
+        { id: 'prod_PuDQYe0hcx48z2', nombre: 'TECLADO GAMER 1', precio: 999, imagen: '../imagenes/productos/tecladoGamer1.jpg' },
+        { id: 'prod_PuDRUuoyTkTJdo', nombre: 'TECLADO GAMER 2', precio: 1099, imagen: '../imagenes/productos/tecladoGamer2.jpg' },
+        { id: 'prod_PuDTQqknceSYgD', nombre: 'TECLADO GAMER 3', precio: 1199, imagen: '../imagenes/productos/tecladoGamer3.jpg' },
+        { id: 'prod_PuDV1h90zWq4bK', nombre: 'TECLADO GAMER 4', precio: 1299, imagen: '../imagenes/productos/tecladoGamer4.jpg' },
+        { id: 'prod_PuDWxMBNNZ1vvZ', nombre: 'TECLADO GAMER 5', precio: 1399, imagen: '../imagenes/productos/tecladoGamer5.jpg' },
     ];
 
     const handleClickAgregar = (producto) => {
@@ -22,7 +22,7 @@ function Tecladogamer({ agregarAlCarrito }) {
                     <hr />
                     {productos.map((producto) => (
                         <div key={producto.id} className="producto" data-product-id={producto.id}>
-                            <img alt="" className="imagenProducto" src={`.../imagenes/productos/tecladoGamer${producto.id.slice(-1)}.jpg`} />
+                            <img alt="" className="imagenProducto" src={producto.imagen} />
                             <p className="nombre">{producto.nombre}</p>
                             <p className="precio">${producto.precio}</p>
                             <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>

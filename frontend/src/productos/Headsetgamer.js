@@ -2,11 +2,11 @@ import React from 'react';
 
 function Headsetgamer({ agregarAlCarrito }) {
     const productos = [
-        { id: 'prod_PuDacfus0p6kyp', nombre: 'HEADSET GAMER 1', precio: 999 },
-        { id: 'prod_PuDbi0XFfRF2w4', nombre: 'HEADSET GAMER 2', precio: 1099 },
-        { id: 'prod_PuDdHRY7sygWa9', nombre: 'HEADSET GAMER 3', precio: 1199 },
-        { id: 'prod_PuDfc3y7Dd9JRi', nombre: 'HEADSET GAMER 4', precio: 1299 },
-        { id: 'prod_PuDglHPEsmcQPm', nombre: 'HEADSET GAMER 5', precio: 1399 },
+        { id: 'prod_PuDacfus0p6kyp', nombre: 'HEADSET GAMER 1', precio: 999, imagen: '../imagenes/productos/headsetGamer1.jpeg' },
+        { id: 'prod_PuDbi0XFfRF2w4', nombre: 'HEADSET GAMER 2', precio: 1099, imagen: '../imagenes/productos/headsetGamer2.jpeg' },
+        { id: 'prod_PuDdHRY7sygWa9', nombre: 'HEADSET GAMER 3', precio: 1199, imagen: '../imagenes/productos/headsetGamer3.jpeg' },
+        { id: 'prod_PuDfc3y7Dd9JRi', nombre: 'HEADSET GAMER 4', precio: 1299, imagen: '../imagenes/productos/headsetGamer4.jpeg' },
+        { id: 'prod_PuDglHPEsmcQPm', nombre: 'HEADSET GAMER 5', precio: 1399, imagen: '../imagenes/productos/headsetGamer5.jpeg' },
     ];
 
     const handleClickAgregar = (producto) => {
@@ -22,7 +22,7 @@ function Headsetgamer({ agregarAlCarrito }) {
                     <hr />
                     {productos.map((producto) => (
                         <div key={producto.id} className="producto" data-product-id={producto.id}>
-                            <img alt="" className="imagenProducto" src={`../imagenes/productos/headsetGamer${producto.id.slice(-1)}.jpeg`} />
+                            <img alt="" className="imagenProducto" src={producto.imagen} />
                             <p className="nombre">{producto.nombre}</p>
                             <p className="precio">${producto.precio}</p>
                             <button className="botonProducto" onClick={() => handleClickAgregar(producto)}>

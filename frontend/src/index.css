@@ -204,3 +204,23 @@ header{
     }
 
   }
+
+
+
+  /* Boton WhatsApp*/
+
+  .whatsapp-button {
+    position: fixed; /* Hace que el botón sea fijo en la pantalla */
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde el borde derecho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+  .whatsapp-icon {
+    transition: transform 0.3s ease; /* Agrega una transición suave */
+    margin-left: 20px;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.5); 
+}

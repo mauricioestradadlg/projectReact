@@ -4,6 +4,7 @@ import Header from './componentes/Header.js';
 import Navegation from './componentes/Navegation.js';
 import Footer from './componentes/Footer.js';
 import Carrito from './componentes/Carrito.js';
+import BotonWha from './componentes/BotonWha.js';
 import Inicio from './paginas/Inicio.js';
 import AboutUs from './paginas/AboutUs.js';
 import Catalogo from './paginas/Productos.js';
@@ -76,6 +77,7 @@ function App() {
                     {/* Redirecciona al carrito después de agregar un producto */}
                     <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />
                 </Routes>
+                <BotonWha />
                 <Footer />
             </div>
         </Router>
