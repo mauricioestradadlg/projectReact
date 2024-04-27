@@ -1,12 +1,81 @@
+require('dotenv').config();
 const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
+const PORT = process.env.PORT || 3000;
+const cors = require('cors'); // Importa el middleware cors
+
+// Habilita CORS para todas las solicitudes
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
+
+app.get('/test', (req, res) => {
+    res.send('Conexión exitosa entre React y Node JS');
+});
 
 
-app.get("/api", (req, res) => {
-  res.json({"usuarios": ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"]})
-})
+// Conexión a la base de datos MongoDB Atlas
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Conexión exitosa a la base de datos');
+}).catch((error) => {
+    console.error('Error al conectar a la base de datos:', error);
+});
+
+// Middleware para analizar el cuerpo de las solicitudes
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// Servir los archivos estáticos desde la carpeta public
+app.use(express.static('public'));
+
+// Definir el esquema del cliente
+const userBeastGadgets = new mongoose.Schema({
+    nombre: String,
+    correo: String,
+    mensaje: String
+});
+
+
+// Definir el modelo de Usuario
+const Usuario = mongoose.model('Usuario', userBeastGadgets); // Agrega esta línea para definir el modelo Usuario
+
+
+
+// Manejar la solicitud para registrar un nuevo usuario
+app.post('/formulario-beastGadgets', async (req, res) => {
+    try {
+        const { nombre, correo, mensaje } = req.body;
+
+        // Crear un nuevo usuario
+        const newUser = new Usuario({
+            nombre,
+            correo,
+            mensaje
+        });
+
+        // Guardar el usuario en la base de datos
+        await newUser.save();
+        console.log('Formulario enviado correctamente');
+
+
+        // Redirigir al usuario a una página de éxito
+        
+        //res.redirect('/exito.html'); // Cambiar a la ruta de tu página de éxito
+    } 
+    catch (error) {
+        console.error('Error al enviar el formulario:', error);
+        res.status(500).send('Error al enviar el formulario');
+    }
+});
+
+
 
 // Iniciar el servidor
-app.listen(3000, () => {
-    console.log(`Servidor iniciado en http://localhost:3000/api`);
+app.listen(PORT, () => {
+    console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });

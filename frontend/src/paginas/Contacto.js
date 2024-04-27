@@ -1,35 +1,55 @@
+import React, { useState } from 'react';
+import axios from 'axios'; // Importa axios para hacer peticiones HTTP
 
+function Contacto() {
+    const [formulario, setFormulario] = useState({
+        nombre: '',
+        correo: '',
+        celular: '',
+        comentario: ''
+    });
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormulario({ ...formulario, [name]: value });
+    };
 
-function Contacto(){
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3000/contacto', formulario);
+            console.log(response.data); // Imprime la respuesta del servidor en la consola
+            // Aquí puedes manejar la respuesta del servidor como desees (por ejemplo, mostrar un mensaje de éxito)
+        } catch (error) {
+            console.error('Error al enviar formulario:', error);
+            // Aquí puedes manejar el error, como mostrar un mensaje al usuario
+        }
+    };
 
     return (
         <>
-        <main>
-        <h1 id = "h1Inicio">Contacto</h1>
-        <h4 id = "h4Inicio">Cualquier duda o comentario envianos un mensaje!</h4><br/>
-        <img alt = "" className = "imagenContacto" src = './imagenes/gamerFeedback.jpg'/>
-        <form>
+            <main>
+                <h1 id="h1Inicio">Contacto</h1>
+                <h4 id="h4Inicio">Cualquier duda o comentario envíanos un mensaje!</h4><br />
+                <img alt="" className="imagenContacto" src="./imagenes/gamerFeedback.jpg" />
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="nombre">Nombre:</label><br /><br />
+                    <input type="text" id="nombre" name="nombre" required placeholder="--INSERTAR NOMBRE--" value={formulario.nombre} onChange={handleChange} /><br /><br />
 
-            <label for ="nombre">Nombre:</label><br/><br/>
-            <input type ="text" id ="nombre" name ="nombre" required placeholder="--INSERTAR NOMBRE--"></input><br/><br/>
+                    <label htmlFor="correo">Correo:</label><br /><br />
+                    <input type="email" id="correo" name="correo" required placeholder="--INSERTAR CORREO--" value={formulario.correo} onChange={handleChange} /><br /><br />
 
-            <label for ="correo">Correo:</label><br/><br/>
-            <input type ="email" id ="correo" name ="correo" required placeholder="--INSERTAR CORREO--"></input><br/><br/>
+                    <label htmlFor="celular">Celular:</label><br /><br />
+                    <input type="tel" id="celular" name="celular" required placeholder="--INSERTAR CELULAR--" value={formulario.celular} onChange={handleChange} /><br /><br />
 
-            <label for ="celular">Celular:</label><br/><br/>
-            <input type ="tel" id ="celular" name ="celular" required placeholder="--INSERTAR CELULAR--"></input><br/><br/>
+                    <label htmlFor="comentario">Comentarios:</label><br /><br />
+                    <textarea id="comentario" name="comentario" rows="5" cols="25" placeholder="--COMENTARIOS--" value={formulario.comentario} onChange={handleChange}></textarea><br /><br />
 
-            <label  for ="comentario">Comentarios:</label><br/><br/>
-            <textarea id="comentario" name="comentario" rows="5" cols="25" placeholder ="--COMENTARIOS--"></textarea><br/><br/>
-
-            <button>Enviar</button><br/><br/>
-
-        </form>            
-        </main>
+                    <button type="submit">Enviar</button><br /><br />
+                </form>
+            </main>
         </>
     );
-
 }
 
-export default Contacto
+export default Contacto;

@@ -2,6 +2,7 @@
 
 function Inicio(){
 
+    
     return (
         <main>
             <h1 id = "h1Inicio">BIENVENIDO A NUESTRA PAGINA WEB OFICIAL!!</h1><br/><br/>
@@ -12,6 +13,7 @@ function Inicio(){
             <img class ="imagenInicio"src = "./imagenes/pcGamer1.jpg"/>
             <h4 id = "h4Inicio">TE DAREMOS UN 10% EN TU PRIMERA COMPRA😉</h4>
         </main>
+        
     );
 
 }
