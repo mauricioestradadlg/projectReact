@@ -6,7 +6,7 @@ function Contacto() {
         nombre: '',
         correo: '',
         celular: '',
-        comentario: ''
+        mensaje: ''
     });
 
     const handleChange = (e) => {
@@ -42,8 +42,8 @@ function Contacto() {
                     <label htmlFor="celular">Celular:</label><br /><br />
                     <input type="tel" id="celular" name="celular" required placeholder="--INSERTAR CELULAR--" value={formulario.celular} onChange={handleChange} /><br /><br />
 
-                    <label htmlFor="comentario">Comentarios:</label><br /><br />
-                    <textarea id="comentario" name="comentario" rows="5" cols="25" placeholder="--COMENTARIOS--" value={formulario.comentario} onChange={handleChange}></textarea><br /><br />
+                    <label htmlFor="mensaje">Comentarios:</label><br /><br />
+                    <textarea id="mensaje" name="mensaje" rows="5" cols="25" placeholder="--COMENTARIOS--" value={formulario.mensaje} onChange={handleChange}></textarea><br /><br />
 
                     <button type="submit">Enviar</button><br /><br />
                 </form>

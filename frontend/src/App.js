@@ -9,6 +9,7 @@ import Inicio from './paginas/Inicio.js';
 import AboutUs from './paginas/AboutUs.js';
 import Catalogo from './paginas/Productos.js';
 import Contacto from './paginas/Contacto.js';
+import FormEnviado from './paginas/FormEnviado.js';
 import PCgamer from './productos/PCgamer.js';
 import Mousegamer from './productos/Mousegamer.js';
 import Tecladogamer from './productos/Tecladogamer.js';
@@ -18,6 +19,7 @@ import Headsetgamer from './productos/Headsetgamer.js';
 import './App.css';
 
 function App() {
+
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
 
     const agregarAlCarrito = (producto) => {
@@ -31,6 +33,9 @@ function App() {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
     };
+
+    
+    
 
     return (
         <Router>

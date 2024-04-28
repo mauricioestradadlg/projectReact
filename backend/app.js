@@ -13,10 +13,9 @@ app.use(cors({
     credentials: true  // Opcional, si estás manejando cookies o sesiones
 }));
 
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Conexión exitosa entre React y Node JS');
 });
-
 
 // Conexión a la base de datos MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
@@ -38,24 +37,23 @@ app.use(express.static('public'));
 const userBeastGadgets = new mongoose.Schema({
     nombre: String,
     correo: String,
+    celular: Number,
     mensaje: String
 });
-
 
 // Definir el modelo de Usuario
 const Usuario = mongoose.model('Usuario', userBeastGadgets); // Agrega esta línea para definir el modelo Usuario
 
-
-
 // Manejar la solicitud para registrar un nuevo usuario
 app.post('/contacto', async (req, res) => {
     try {
-        const { nombre, correo, mensaje } = req.body;
+        const { nombre, correo, celular, mensaje } = req.body;
 
         // Crear un nuevo usuario
         const newUser = new Usuario({
             nombre,
             correo,
+            celular,
             mensaje
         });
 
@@ -63,18 +61,14 @@ app.post('/contacto', async (req, res) => {
         await newUser.save();
         console.log('Formulario enviado correctamente');
 
-
-        // Redirigir al usuario a una página de éxito
-        
-        //res.redirect('/exito.html'); // Cambiar a la ruta de tu página de éxito
+        // Envía una respuesta JSON al frontend indicando éxito
+        res.status(200).json({ success: true, message: 'Formulario enviado correctamente' });
     } 
     catch (error) {
         console.error('Error al enviar el formulario:', error);
         res.status(500).send('Error al enviar el formulario');
     }
 });
-
-
 
 // Iniciar el servidor
 app.listen(PORT, () => {
