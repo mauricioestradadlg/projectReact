@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa Navigate
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'; // Importa Navigate
+import axios from 'axios'; // Importa axios
 import Header from './componentes/Header.js';
 import Navegation from './componentes/Navegation.js';
 import Footer from './componentes/Footer.js';
@@ -18,9 +19,17 @@ import Microfonogamer from './productos/Microfonogamer.js';
 import Headsetgamer from './productos/Headsetgamer.js';
 import './App.css';
 
+
 function App() {
 
-    const [productosEnCarrito, setProductosEnCarrito] = useState([]);
+    const [formulario, setFormulario] = useState({
+        nombre: '',
+        correo: '',
+        celular: '',
+        mensaje: ''
+    });
+
+    const [productosEnCarrito, setProductosEnCarrito] = useState([]); // Define productosEnCarrito y setProductosEnCarrito
 
     const agregarAlCarrito = (producto) => {
         const nuevosProductos = [...productosEnCarrito, producto];
@@ -33,8 +42,6 @@ function App() {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
     };
-
-    
     
 
     return (
@@ -79,6 +86,10 @@ function App() {
 
 
                     <Route path="/contacto" element={<Contacto />} />
+
+                    <Route path="/formEnviado" element={<FormEnviado />} />
+
+
                     {/* Redirecciona al carrito después de agregar un producto */}
                     <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />
                 </Routes>

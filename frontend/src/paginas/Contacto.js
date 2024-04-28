@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Importa axios para hacer peticiones HTTP
+import { useNavigate } from 'react-router-dom';
+
 
 function Contacto() {
+  
+    const navigate = useNavigate(); // Declara navigate utilizando useNavigate
+
     const [formulario, setFormulario] = useState({
         nombre: '',
         correo: '',
@@ -20,11 +25,15 @@ function Contacto() {
             const response = await axios.post('http://localhost:3000/contacto', formulario);
             console.log(response.data); // Imprime la respuesta del servidor en la consola
             // Aquí puedes manejar la respuesta del servidor como desees (por ejemplo, mostrar un mensaje de éxito)
+            
+            // Redirigir al usuario al componente FormEnviado
+            navigate('/formEnviado'); // Cambia '/form-enviado' por la ruta de tu componente FormEnviado
         } catch (error) {
             console.error('Error al enviar formulario:', error);
             // Aquí puedes manejar el error, como mostrar un mensaje al usuario
         }
     };
+
 
     return (
         <>
