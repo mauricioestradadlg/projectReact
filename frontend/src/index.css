@@ -224,3 +224,17 @@ header{
 .whatsapp-icon:hover {
     transform: scale(1.5); 
 }
+
+
+ /* Boton Wha Smartphones */
+  
+ @media (max-width: 767px){
+
+  .whatsapp-icon {
+    height: 50px;
+    width: 50px;
+}
+
+
+
+}

@@ -7,9 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require('cors'); // Importa el middleware cors
 
-// Habilita CORS para todas las solicitudes
+// Permitir solicitudes desde el origen del frontend (http://localhost:3001)
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3001',
+    credentials: true  // Opcional, si estás manejando cookies o sesiones
 }));
 
 app.get('/test', (req, res) => {
@@ -47,7 +48,7 @@ const Usuario = mongoose.model('Usuario', userBeastGadgets); // Agrega esta lín
 
 
 // Manejar la solicitud para registrar un nuevo usuario
-app.post('/formulario-beastGadgets', async (req, res) => {
+app.post('/contacto', async (req, res) => {
     try {
         const { nombre, correo, mensaje } = req.body;
 
