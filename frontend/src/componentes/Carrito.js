@@ -46,4 +46,3 @@ const Carrito = ({ productosEnCarrito, setProductosEnCarrito }) => {
 };
 
 export default Carrito;
-

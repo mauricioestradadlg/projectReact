@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
 import axios from 'axios';
 import Header from './componentes/Header';
 import Navegation from './componentes/Navegation';
@@ -20,7 +20,6 @@ import Headsetgamer from './productos/Headsetgamer';
 import './App.css';
 
 function App() {
-
     const [formulario, setFormulario] = useState({
         nombre: '',
         correo: '',
@@ -28,14 +27,24 @@ function App() {
         mensaje: ''
     });
 
-    
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
+
+
+    useEffect(() => {
+        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
+        if (productosGuardados) {
+            setProductosEnCarrito(productosGuardados);
+        }
+    }, []); // Se ejecuta solo una vez al montar el componente
+    
 
     const agregarAlCarrito = (producto) => {
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
+        window.location.href = "/carrito";
+       
     };
 
     const vaciarCarrito = () => {
@@ -61,7 +70,7 @@ function App() {
                     <Route path="/catalogo/monitorgamer" element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} />
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
-                    <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />
+                    
                 </Routes>
                 <BotonWha />
                 <Footer />
