@@ -1,6 +1,4 @@
-Problema: Al enviar un formulario a mi base de datos de Mongo,
-como le hago para que al picarle al boton, tambien me rediriga a la
-pagina del componente formEnviado?
+Problema: 
 
 
 
@@ -255,7 +253,7 @@ package.json:
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -274,7 +272,7 @@ package.json:
 }
 
 
-app.js:
+server.js:
 
 
 require('dotenv').config();

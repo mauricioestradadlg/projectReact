@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'; // Importa Navigate
-import axios from 'axios'; // Importa axios
-import Header from './componentes/Header.js';
-import Navegation from './componentes/Navegation.js';
-import Footer from './componentes/Footer.js';
-import Carrito from './componentes/Carrito.js';
-import BotonWha from './componentes/BotonWha.js';
-import Inicio from './paginas/Inicio.js';
-import AboutUs from './paginas/AboutUs.js';
-import Catalogo from './paginas/Productos.js';
-import Contacto from './paginas/Contacto.js';
-import FormEnviado from './paginas/FormEnviado.js';
-import PCgamer from './productos/PCgamer.js';
-import Mousegamer from './productos/Mousegamer.js';
-import Tecladogamer from './productos/Tecladogamer.js';
-import Monitorgamer from './productos/Monitorgamer.js';
-import Microfonogamer from './productos/Microfonogamer.js';
-import Headsetgamer from './productos/Headsetgamer.js';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import axios from 'axios';
+import Header from './componentes/Header';
+import Navegation from './componentes/Navegation';
+import Footer from './componentes/Footer';
+import Carrito from './componentes/Carrito';
+import BotonWha from './componentes/BotonWha';
+import Inicio from './paginas/Inicio';
+import AboutUs from './paginas/AboutUs';
+import Catalogo from './paginas/Productos';
+import Contacto from './paginas/Contacto';
+import FormEnviado from './paginas/FormEnviado';
+import PCgamer from './productos/PCgamer';
+import Mousegamer from './productos/Mousegamer';
+import Tecladogamer from './productos/Tecladogamer';
+import Monitorgamer from './productos/Monitorgamer';
+import Microfonogamer from './productos/Microfonogamer';
+import Headsetgamer from './productos/Headsetgamer';
 import './App.css';
-
 
 function App() {
 
@@ -29,7 +28,8 @@ function App() {
         mensaje: ''
     });
 
-    const [productosEnCarrito, setProductosEnCarrito] = useState([]); // Define productosEnCarrito y setProductosEnCarrito
+    
+    const [productosEnCarrito, setProductosEnCarrito] = useState([]);
 
     const agregarAlCarrito = (producto) => {
         const nuevosProductos = [...productosEnCarrito, producto];
@@ -42,7 +42,6 @@ function App() {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
     };
-    
 
     return (
         <Router>
@@ -50,47 +49,18 @@ function App() {
                 <Header /><br />
                 <Navegation />
                 <Routes>
-                    <Route
-                        path="/carrito"
-                        element={<Carrito productosEnCarrito={productosEnCarrito} setProductosEnCarrito={setProductosEnCarrito} />} // Asegúrate de pasar setProductosEnCarrito como prop
-                    />
+                    <Route path="/carrito" element={<Carrito productosEnCarrito={productosEnCarrito} setProductosEnCarrito={setProductosEnCarrito} />} />
                     <Route path="/" element={<Inicio />} />
                     <Route path="/aboutus" element={<AboutUs />} />
                     <Route path="/catalogo" element={<Catalogo />} />
-
-                    
-                    <Route
-                        path="/catalogo/pcgamer"
-                        element={<PCgamer agregarAlCarrito={agregarAlCarrito} />}
-                    />
-                    <Route 
-                        path="/catalogo/mousegamer" 
-                        element={<Mousegamer  agregarAlCarrito={agregarAlCarrito}  />} 
-                    />
-                    <Route 
-                        path="/catalogo/tecladogamer" 
-                        element={<Tecladogamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/headsetgamer" 
-                        element={<Headsetgamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/microfonogamer" 
-                        element={<Microfonogamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/monitorgamer" 
-                        element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-
-
+                    <Route path="/catalogo/pcgamer" element={<PCgamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/mousegamer" element={<Mousegamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/tecladogamer" element={<Tecladogamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/headsetgamer" element={<Headsetgamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/microfonogamer" element={<Microfonogamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/monitorgamer" element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} />
                     <Route path="/contacto" element={<Contacto />} />
-
                     <Route path="/formEnviado" element={<FormEnviado />} />
-
-
-                    {/* Redirecciona al carrito después de agregar un producto */}
                     <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />
                 </Routes>
                 <BotonWha />
@@ -101,4 +71,3 @@ function App() {
 }
 
 export default App;
-
