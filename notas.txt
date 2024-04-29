@@ -5,7 +5,94 @@ Problema:
 -Codigos:
 
 
+
 -frontend:
+
+App.js:
+
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
+import axios from 'axios';
+import Header from './componentes/Header';
+import Navegation from './componentes/Navegation';
+import Footer from './componentes/Footer';
+import Carrito from './componentes/Carrito';
+import BotonWha from './componentes/BotonWha';
+import Inicio from './paginas/Inicio';
+import AboutUs from './paginas/AboutUs';
+import Catalogo from './paginas/Productos';
+import Contacto from './paginas/Contacto';
+import FormEnviado from './paginas/FormEnviado';
+import PCgamer from './productos/PCgamer';
+import Mousegamer from './productos/Mousegamer';
+import Tecladogamer from './productos/Tecladogamer';
+import Monitorgamer from './productos/Monitorgamer';
+import Microfonogamer from './productos/Microfonogamer';
+import Headsetgamer from './productos/Headsetgamer';
+import './App.css';
+
+function App() {
+    const [formulario, setFormulario] = useState({
+        nombre: '',
+        correo: '',
+        celular: '',
+        mensaje: ''
+    });
+
+    const [productosEnCarrito, setProductosEnCarrito] = useState([]);
+
+
+    useEffect(() => {
+        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
+        if (productosGuardados) {
+            setProductosEnCarrito(productosGuardados);
+        }
+    }, []); // Se ejecuta solo una vez al montar el componente
+    
+
+    const agregarAlCarrito = (producto) => {
+        const nuevosProductos = [...productosEnCarrito, producto];
+        setProductosEnCarrito(nuevosProductos);
+        localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
+        alert('Producto agregado al carrito');
+        window.location.href = "/carrito";
+       
+    };
+
+    const vaciarCarrito = () => {
+        setProductosEnCarrito([]);
+        localStorage.removeItem('productosEnCarrito');
+    };
+
+    return (
+        <Router>
+            <div>
+                <Header /><br />
+                <Navegation />
+                <Routes>
+                    <Route path="/carrito" element={<Carrito productosEnCarrito={productosEnCarrito} setProductosEnCarrito={setProductosEnCarrito} />} />
+                    <Route path="/" element={<Inicio />} />
+                    <Route path="/aboutus" element={<AboutUs />} />
+                    <Route path="/catalogo" element={<Catalogo />} />
+                    <Route path="/catalogo/pcgamer" element={<PCgamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/mousegamer" element={<Mousegamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/tecladogamer" element={<Tecladogamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/headsetgamer" element={<Headsetgamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/microfonogamer" element={<Microfonogamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/catalogo/monitorgamer" element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} />
+                    <Route path="/contacto" element={<Contacto />} />
+                    <Route path="/formEnviado" element={<FormEnviado />} />
+                    
+                </Routes>
+                <BotonWha />
+                <Footer />
+            </div>
+        </Router>
+    );
+}
+
+export default App;
+
 
 package.json:
 
@@ -15,13 +102,14 @@ package.json:
   "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
+    "@stripe/stripe-js": "^3.3.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
+    "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -53,201 +141,109 @@ package.json:
 
 
 
-App.js:
-
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa Navigate
-import Header from './componentes/Header.js';
-import Navegation from './componentes/Navegation.js';
-import Footer from './componentes/Footer.js';
-import Carrito from './componentes/Carrito.js';
-import BotonWha from './componentes/BotonWha.js';
-import Inicio from './paginas/Inicio.js';
-import AboutUs from './paginas/AboutUs.js';
-import Catalogo from './paginas/Productos.js';
-import Contacto from './paginas/Contacto.js';
-import FormEnviado from './paginas/FormEnviado.js';
-import PCgamer from './productos/PCgamer.js';
-import Mousegamer from './productos/Mousegamer.js';
-import Tecladogamer from './productos/Tecladogamer.js';
-import Monitorgamer from './productos/Monitorgamer.js';
-import Microfonogamer from './productos/Microfonogamer.js';
-import Headsetgamer from './productos/Headsetgamer.js';
-import './App.css';
-
-function App() {
-    const [productosEnCarrito, setProductosEnCarrito] = useState([]);
-
-    const agregarAlCarrito = (producto) => {
-        const nuevosProductos = [...productosEnCarrito, producto];
-        setProductosEnCarrito(nuevosProductos);
-        localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
-        alert('Producto agregado al carrito');
-    };
-
-    const vaciarCarrito = () => {
-        setProductosEnCarrito([]);
-        localStorage.removeItem('productosEnCarrito');
-    };
-
-    return (
-        <Router>
-            <div>
-                <Header /><br />
-                <Navegation />
-                <Routes>
-                    <Route
-                        path="/carrito"
-                        element={<Carrito productosEnCarrito={productosEnCarrito} setProductosEnCarrito={setProductosEnCarrito} />} // Asegúrate de pasar setProductosEnCarrito como prop
-                    />
-                    <Route path="/" element={<Inicio />} />
-                    <Route path="/aboutus" element={<AboutUs />} />
-                    <Route path="/catalogo" element={<Catalogo />} />
-
-                    
-                    <Route
-                        path="/catalogo/pcgamer"
-                        element={<PCgamer agregarAlCarrito={agregarAlCarrito} />}
-                    />
-                    <Route 
-                        path="/catalogo/mousegamer" 
-                        element={<Mousegamer  agregarAlCarrito={agregarAlCarrito}  />} 
-                    />
-                    <Route 
-                        path="/catalogo/tecladogamer" 
-                        element={<Tecladogamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/headsetgamer" 
-                        element={<Headsetgamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/microfonogamer" 
-                        element={<Microfonogamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-                    <Route 
-                        path="/catalogo/monitorgamer" 
-                        element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} 
-                    />
-
-
-                    <Route path="/contacto" element={<Contacto />} />
-                    {/* Redirecciona al carrito después de agregar un producto */}
-                    <Route path="/agregar-carrito" element={<Navigate to="/carrito" />} />
-                </Routes>
-                <BotonWha />
-                <Footer />
-            </div>
-        </Router>
-    );
-}
-
-export default App;
-
-
-
-
-Contacto.js:
-
-
-import React, { useState } from 'react';
-import axios from 'axios'; // Importa axios para hacer peticiones HTTP
-
-function Contacto() {
-    const [formulario, setFormulario] = useState({
-        nombre: '',
-        correo: '',
-        celular: '',
-        mensaje: ''
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormulario({ ...formulario, [name]: value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:3000/contacto', formulario);
-            console.log(response.data); // Imprime la respuesta del servidor en la consola
-            // Aquí puedes manejar la respuesta del servidor como desees (por ejemplo, mostrar un mensaje de éxito)
-        } catch (error) {
-            console.error('Error al enviar formulario:', error);
-            // Aquí puedes manejar el error, como mostrar un mensaje al usuario
-        }
-    };
-
-    return (
-        <>
-            <main>
-                <h1 id="h1Inicio">Contacto</h1>
-                <h4 id="h4Inicio">Cualquier duda o comentario envíanos un mensaje!</h4><br />
-                <img alt="" className="imagenContacto" src="./imagenes/gamerFeedback.jpg" />
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="nombre">Nombre:</label><br /><br />
-                    <input type="text" id="nombre" name="nombre" required placeholder="--INSERTAR NOMBRE--" value={formulario.nombre} onChange={handleChange} /><br /><br />
-
-                    <label htmlFor="correo">Correo:</label><br /><br />
-                    <input type="email" id="correo" name="correo" required placeholder="--INSERTAR CORREO--" value={formulario.correo} onChange={handleChange} /><br /><br />
-
-                    <label htmlFor="celular">Celular:</label><br /><br />
-                    <input type="tel" id="celular" name="celular" required placeholder="--INSERTAR CELULAR--" value={formulario.celular} onChange={handleChange} /><br /><br />
-
-                    <label htmlFor="mensaje">Comentarios:</label><br /><br />
-                    <textarea id="mensaje" name="mensaje" rows="5" cols="25" placeholder="--COMENTARIOS--" value={formulario.mensaje} onChange={handleChange}></textarea><br /><br />
-
-                    <button type="submit">Enviar</button><br /><br />
-                </form>
-            </main>
-        </>
-    );
-}
-
-export default Contacto;
-
-
-FormEnviado.js:
-
-
-
-
-function FormEnviado(){
-
-    return(
-    <>
-        <main>
-            <h1 id = "h1AU">Muchas gracias por contactanos✅</h1>
-            <h3>Te contactaremos pronto😉</h3>          
-            
-            <p className="parrafoAU">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magni commodi 
-            neque eligendi exercitationem molestias rerum accusamus laudantium vero nostrum 
-            dicta minima suscipit nam obcaecati animi pariatur, doloremque ex expedita.
-            </p>
-            <p className="parrafoAU">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magni commodi 
-            neque eligendi exercitationem molestias rerum accusamus laudantium vero nostrum 
-            dicta minima suscipit nam obcaecati animi pariatur, doloremque ex expedita.
-            </p>
-            <p className="parrafoAU">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magni commodi 
-            neque eligendi exercitationem molestias rerum accusamus laudantium vero nostrum 
-            dicta minima suscipit nam obcaecati animi pariatur, doloremque ex expedita.
-            </p>
-            <p className="parrafoAU">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magni commodi 
-            neque eligendi exercitationem molestias rerum accusamus laudantium vero nostrum 
-            dicta minima suscipit nam obcaecati animi pariatur, doloremque ex expedita.
-            </p>
-        </main>
-    </>)
-}
-
-export default FormEnviado;
-
-
-
 -backend:
 
 
+server.js:
+
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const app = express();
+const PORT = process.env.PORT || 3000;
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true
+}));
+
+app.get('/', (req, res) => {
+    res.send('Conexión exitosa entre React y Node JS');
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Conexión exitosa a la base de datos');
+}).catch((error) => {
+    console.error('Error al conectar a la base de datos:', error);
+});
+
+const userBeastGadgets = new mongoose.Schema({
+    nombre: String,
+    correo: String,
+    celular: Number,
+    mensaje: String
+});
+
+const Usuario = mongoose.model('Usuario', userBeastGadgets);
+
+app.post('/contacto', async (req, res) => {
+    try {
+        const { nombre, correo, celular, mensaje } = req.body;
+
+        const newUser = new Usuario({
+            nombre,
+            correo,
+            celular,
+            mensaje
+        });
+
+        await newUser.save();
+        console.log('Formulario enviado correctamente');
+
+        res.redirect('/'); // Cambiar a la ruta de tu página de éxito
+    } catch (error) {
+        console.error('Error al enviar el formulario:', error);
+        res.status(500).send('Error al enviar el formulario');
+    }
+});
+
+app.post('/checkout-session', async (req, res) => {
+    try {
+        const { productos } = req.body;
+
+        const lineItems = productos.map((producto) => ({
+            price_data: {
+                currency: 'mxn',
+                product_data: {
+                    name: producto.nombre,
+                },
+                unit_amount: producto.precio * 100,
+            },
+            quantity: 1,
+        }));
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: lineItems,
+            mode: 'payment',
+            success_url: 'http://localhost:3001/formEnviado',
+            cancel_url: 'http://localhost:3001/carrito',
+        });
+
+        res.json({ sessionId: session.id });
+    } catch (error) {
+        console.error('Error al crear el checkout session:', error);
+        res.status(500).json({ error: 'Error al crear el checkout session' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor iniciado en http://localhost:${PORT}`);
+});
+
+
+
 package.json:
+
 
 {
   "name": "backend",
@@ -265,132 +261,8 @@ package.json:
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.3.1",
+    "mongoose": "^8.3.2",
     "moongose": "^1.0.0",
-    "stripe": "^15.1.0"
+    "stripe": "^15.4.0"
   }
 }
-
-
-server.js:
-
-
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const app = express();
-const PORT = process.env.PORT || 3000;
-const cors = require('cors'); // Importa el middleware cors
-
-// Permitir solicitudes desde el origen del frontend (http://localhost:3001)
-app.use(cors({
-    origin: 'http://localhost:3001',
-    credentials: true  // Opcional, si estás manejando cookies o sesiones
-}));
-
-app.get('/', (req, res) => {
-    res.send('Conexión exitosa entre React y Node JS');
-});
-
-
-// Conexión a la base de datos MongoDB Atlas
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log('Conexión exitosa a la base de datos');
-}).catch((error) => {
-    console.error('Error al conectar a la base de datos:', error);
-});
-
-// Middleware para analizar el cuerpo de las solicitudes
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-// Servir los archivos estáticos desde la carpeta public
-app.use(express.static('public'));
-
-// Definir el esquema del cliente
-const userBeastGadgets = new mongoose.Schema({
-    nombre: String,
-    correo: String,
-    celular: Number,
-    mensaje: String
-});
-
-
-// Definir el modelo de Usuario
-const Usuario = mongoose.model('Usuario', userBeastGadgets); // Agrega esta línea para definir el modelo Usuario
-
-
-
-// Manejar la solicitud para registrar un nuevo usuario
-app.post('/contacto', async (req, res) => {
-    try {
-        const { nombre, correo, celular, mensaje } = req.body;
-
-        // Crear un nuevo usuario
-        const newUser = new Usuario({
-            nombre,
-            correo,
-            celular,
-            mensaje
-        });
-
-        // Guardar el usuario en la base de datos
-        await newUser.save();
-        console.log('Formulario enviado correctamente');
-
-
-        // Redirigir al usuario a una página de éxito
-        
-        res.redirect('/'); // Cambiar a la ruta de tu página de éxito
-    } 
-    catch (error) {
-        console.error('Error al enviar el formulario:', error);
-        res.status(500).send('Error al enviar el formulario');
-    }
-});
-
-
-
-// Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor iniciado en http://localhost:${PORT}`);
-});
-
-
-
-Estructura del archivo:
-
-
-_____________ frontend
-|            |
-|            |___ public
-|            |   |
-|            |   |_____
-|            |
-|            |___ src
-|                |
-|                |_____App.js
-|                |
-|                |_____componentes
-|                |
-|                |_____paginas
-|                |
-|                |_____productos
-|
-|
-|
-|
-|
-|
-|
-|_____________ backend
-              |
-              |__ app.js
-
-
-
-

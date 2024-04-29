@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "homepage": "https://github.com/mauricioestradadlg/projectReact",
   "description": "",
   "main": "server.js",
   "scripts": {
