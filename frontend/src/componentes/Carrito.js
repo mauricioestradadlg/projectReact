@@ -1,10 +1,24 @@
-import React from 'react';
+// Carrito.js
+
+import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 
-const stripePromise = loadStripe('STRIPE_SECRET_KEY');
+const stripePromise = loadStripe('pk_test_51OpYfERqLhXyfZHFeE0ReyNR2mNsAGQK0hfgiPiypxgp4nDk1BMCmvlXfn86OkbVV7dsBJjV3CYFTfJt3Jo3mbgJ00zQeHtM7Y');
 
 const Carrito = ({ productosEnCarrito, setProductosEnCarrito }) => {
+    const [walletConfig, setWalletConfig] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/wallet-config')
+            .then(response => {
+                setWalletConfig(response.data);
+            })
+            .catch(error => {
+                console.error('Error al obtener la configuración del wallet:', error);
+            });
+    }, []);
+
     const vaciarCarrito = () => {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
@@ -29,18 +43,18 @@ const Carrito = ({ productosEnCarrito, setProductosEnCarrito }) => {
 
     return (
         <>
-                <h1 id="h1Inicio">CARRITO DE COMPRAS: </h1><br /><br />
-                <ul id="carrito">
-                    {productosEnCarrito.map((producto, index) => (
-                        <li key={index}>
-                            {producto.nombre} - ${producto.precio}
-                        </li>
-                    ))}
-                </ul>
-                <p id="total">Total a pagar: ${productosEnCarrito.reduce((total, producto) => total + producto.precio, 0)}</p>
-                <button id="vaciarCarrito" onClick={vaciarCarrito}>Vaciar Carrito</button>
+            <h1 id="h1Inicio">CARRITO DE COMPRAS: </h1><br /><br />
+            <ul id="carrito">
+                {productosEnCarrito.map((producto, index) => (
+                    <li key={index}>
+                        {producto.nombre} - ${producto.precio}
+                    </li>
+                ))}
+            </ul>
+            <p id="total">Total a pagar: ${productosEnCarrito.reduce((total, producto) => total + producto.precio, 0)}</p>
+            <button id="vaciarCarrito" onClick={vaciarCarrito}>Vaciar Carrito</button>
 
-                <button onClick={handleCheckout}>Comprar Carrito</button>
+            <button onClick={handleCheckout}>Comprar Carrito</button>
         </>
     );
 };

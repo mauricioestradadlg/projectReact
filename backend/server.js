@@ -8,7 +8,7 @@ const cors = require('cors');
 
 app.use(cors({
     origin: 'http://localhost:3001',
-    credentials: true
+    credentials: true,
 }));
 
 app.get('/', (req, res) => {
@@ -58,8 +58,20 @@ app.post('/contacto', async (req, res) => {
     }
 });
 
+app.get('/wallet-config', async (req, res) => {
+    try {
+        // Lógica para obtener la configuración del wallet desde Stripe
+        const walletConfig = await stripe.welcomePortal.getElementsWalletConfig();
+        res.json(walletConfig);
+    } catch (error) {
+        console.error('Error al obtener la configuración del wallet:', error);
+        res.status(500).json({ error: 'Error al obtener la configuración del wallet' });
+    }
+});
+
 app.post('/checkout-session', async (req, res) => {
     try {
+        console.log('Solicitud POST recibida en /checkout-session'); // Registro de consola
         const { productos } = req.body;
 
         const lineItems = productos.map((producto) => ({
@@ -82,7 +94,10 @@ app.post('/checkout-session', async (req, res) => {
         });
 
         res.json({ sessionId: session.id });
-    } catch (error) {
+        //res.json({url: session.url}) // <-- this is the changed line
+    } 
+    
+    catch (error) {
         console.error('Error al crear el checkout session:', error);
         res.status(500).json({ error: 'Error al crear el checkout session' });
     }
