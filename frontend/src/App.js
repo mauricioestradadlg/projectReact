@@ -11,6 +11,7 @@ import AboutUs from './paginas/AboutUs';
 import Catalogo from './paginas/Productos';
 import Contacto from './paginas/Contacto';
 import FormEnviado from './paginas/FormEnviado';
+import Compraconfirmada from './paginas/Compraconfirmada';
 import PCgamer from './productos/PCgamer';
 import Mousegamer from './productos/Mousegamer';
 import Tecladogamer from './productos/Tecladogamer';
@@ -70,6 +71,7 @@ function App() {
                     <Route path="/catalogo/monitorgamer" element={<Monitorgamer agregarAlCarrito={agregarAlCarrito} />} />
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
+                    <Route path="/compraConfirmada" element={<Compraconfirmada />} />
                     
                 </Routes>
                 <BotonWha />

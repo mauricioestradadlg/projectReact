@@ -37,6 +37,20 @@ const userBeastGadgets = new mongoose.Schema({
 
 const Usuario = mongoose.model('Usuario', userBeastGadgets);
 
+// Define el esquema de compra con los detalles de los productos
+const compraSchema = new mongoose.Schema({
+    productos: [{
+        nombre: String,
+        precio: Number,
+        idProducto: String, // ID de producto en Stripe
+        cantidad: Number // Cantidad del producto
+    }],
+    total: Number,
+    fecha: { type: Date, default: Date.now }
+});
+
+const Compra = mongoose.model('Compra', compraSchema);
+
 app.post('/contacto', async (req, res) => {
     try {
         const { nombre, correo, celular, mensaje } = req.body;
@@ -89,12 +103,25 @@ app.post('/checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'http://localhost:3001/formEnviado',
+            success_url: 'http://localhost:3001/compraConfirmada',
             cancel_url: 'http://localhost:3001/carrito',
         });
 
+        const nuevaCompra = new Compra({
+            productos: productos.map(producto => ({
+                nombre: producto.nombre,
+                precio: producto.precio,
+                idProducto: producto._id, // Suponiendo que los productos ya están en la base de datos
+                cantidad: 1 // Suponiendo que la cantidad siempre es 1 por producto
+            })),
+            total: productos.reduce((total, producto) => total + producto.precio, 0),
+        });
+
+        await nuevaCompra.save();
+        console.log('Compra guardada correctamente en la base de datos');
+
         res.json({ sessionId: session.id });
-        //res.json({url: session.url}) // <-- this is the changed line
+        //res.json({url: session.url}) // <-- this es la línea modificada
     } 
     
     catch (error) {
