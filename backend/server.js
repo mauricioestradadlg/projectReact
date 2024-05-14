@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'https://projectreact-2u9m.onrender.com/',
+    origin: 'https://projectreact-2u9m.onrender.com',
     credentials: true,
 }));
 
