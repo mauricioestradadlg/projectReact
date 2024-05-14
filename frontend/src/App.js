@@ -46,7 +46,7 @@ function App() {
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        window.location.href = "/carrito";
+        <Navigate to="/carrito" />;
        
     };
 
