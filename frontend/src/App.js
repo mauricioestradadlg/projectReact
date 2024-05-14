@@ -38,9 +38,10 @@ function App() {
         }
     }, []); // Se ejecuta solo una vez al montar el componente
     
+    const navigate = useNavigate(); // Declara navigate utilizando useNavigate
 
     const agregarAlCarrito = (producto) => {
-        const navigate = useNavigate(); // Declara navigate utilizando useNavigate
+        
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
