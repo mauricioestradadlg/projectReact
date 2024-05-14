@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import Header from './componentes/Header';
 import Navegation from './componentes/Navegation';
@@ -40,11 +40,12 @@ function App() {
     
 
     const agregarAlCarrito = (producto) => {
+        const navigate = useNavigate(); // Declara navigate utilizando useNavigate
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        window.location.href = "/carrito";
+        navigate("/carrito");
        
     };
 
