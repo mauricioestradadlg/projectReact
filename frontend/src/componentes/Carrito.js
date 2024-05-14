@@ -10,7 +10,7 @@ const Carrito = ({ productosEnCarrito, setProductosEnCarrito }) => {
     const [walletConfig, setWalletConfig] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/wallet-config')
+        axios.get('https://projectreactbackend.onrender.com/wallet-config')
             .then(response => {
                 setWalletConfig(response.data);
             })
@@ -27,7 +27,7 @@ const Carrito = ({ productosEnCarrito, setProductosEnCarrito }) => {
     const handleCheckout = async () => {
         const stripe = await stripePromise;
 
-        const response = await axios.post('http://localhost:3000/checkout-session', {
+        const response = await axios.post('https://projectreactbackend.onrender.com/checkout-session', {
             productos: productosEnCarrito,
         });
 

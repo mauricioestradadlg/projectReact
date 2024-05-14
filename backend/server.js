@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'https://projectreact-2u9m.onrender.com/',
     credentials: true,
 }));
 
@@ -103,8 +103,8 @@ app.post('/checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'http://localhost:3001/compraConfirmada',
-            cancel_url: 'http://localhost:3001/carrito',
+            success_url: 'https://projectreact-2u9m.onrender.com/compraConfirmada',
+            cancel_url: 'https://projectreact-2u9m.onrender.com/carrito',
         });
 
         const nuevaCompra = new Compra({
