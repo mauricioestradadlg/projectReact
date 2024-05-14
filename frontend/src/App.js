@@ -72,6 +72,7 @@ function App() {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
                     <Route path="/compraConfirmada" element={<Compraconfirmada />} />
+
                     
                 </Routes>
                 <BotonWha />
