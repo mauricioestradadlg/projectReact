@@ -46,7 +46,7 @@ function App() {
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        <Navigate to="/carrito" />;
+        window.location.href = 'https://projectreact-2u9m.onrender.com/carrito';
        
     };
 
