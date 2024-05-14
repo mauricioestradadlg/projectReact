@@ -22,7 +22,7 @@ function Contacto() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/contacto', formulario);
+            const response = await axios.post('https://projectreactbackend.onrender.com/contacto', formulario);
             console.log(response.data); // Imprime la respuesta del servidor en la consola
             // Aquí puedes manejar la respuesta del servidor como desees (por ejemplo, mostrar un mensaje de éxito)
             
