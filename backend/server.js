@@ -103,8 +103,8 @@ app.post('/checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: '/compraConfirmada',
-            cancel_url: '/carrito',
+            success_url: 'https://projectreact-2u9m.onrender.com/compraConfirmada',
+            cancel_url: 'https://projectreact-2u9m.onrender.com/carrito',
         });
 
         const nuevaCompra = new Compra({
