@@ -41,14 +41,13 @@ function App() {
     
 
     const agregarAlCarrito = (producto) => {
-        
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        window.location.href = 'https://projectreact-2u9m.onrender.com/carrito';
-       
+        return <Navigate to="/carrito" />;
     };
+    
 
     const vaciarCarrito = () => {
         setProductosEnCarrito([]);
