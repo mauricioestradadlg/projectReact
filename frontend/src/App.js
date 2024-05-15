@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import Header from './componentes/Header';
 import Navegation from './componentes/Navegation';
@@ -29,6 +29,7 @@ function App() {
     });
 
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
+    const navigate = useNavigate(); // Obtener la función de navegación
 
     useEffect(() => {
         const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
@@ -36,12 +37,13 @@ function App() {
             setProductosEnCarrito(productosGuardados);
         }
     }, []); // Se ejecuta solo una vez al montar el componente
-
+    
     const agregarAlCarrito = (producto) => {
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
+        navigate('/carrito'); // Redirigir al componente del Carrito
     };
 
     const vaciarCarrito = () => {
@@ -68,9 +70,6 @@ function App() {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
                     <Route path="/compraConfirmada" element={<Compraconfirmada />} />
-
-                    {/* Enlace al Carrito */}
-                    <Route path="/ver-carrito" element={<Link to="/carrito">Ver Carrito</Link>} />
                 </Routes>
                 <BotonWha />
                 <Footer />
@@ -80,3 +79,4 @@ function App() {
 }
 
 export default App;
+
