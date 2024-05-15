@@ -21,12 +21,20 @@ import Headsetgamer from './productos/Headsetgamer';
 import './App.css';
 
 function App() {
+    const [formulario, setFormulario] = useState({
+        nombre: '',
+        correo: '',
+        celular: '',
+        mensaje: ''
+    });
+
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
-    
 
     useEffect(() => {
-        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito')) || [];
-        setProductosEnCarrito(productosGuardados);
+        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
+        if (productosGuardados) {
+            setProductosEnCarrito(productosGuardados);
+        }
     }, []); // Se ejecuta solo una vez al montar el componente
 
     const agregarAlCarrito = (producto) => {
@@ -34,7 +42,6 @@ function App() {
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        <Link to = "/carrito"/>
     };
 
     const vaciarCarrito = () => {
@@ -61,6 +68,9 @@ function App() {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
                     <Route path="/compraConfirmada" element={<Compraconfirmada />} />
+
+                    {/* Enlace al Carrito */}
+                    <Route path="/ver-carrito" element={<Link to="/carrito">Ver Carrito</Link>} />
                 </Routes>
                 <BotonWha />
                 <Footer />
