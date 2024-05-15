@@ -20,7 +20,7 @@ import Microfonogamer from './productos/Microfonogamer';
 import Headsetgamer from './productos/Headsetgamer';
 import './App.css';
 
-function App() {
+const App = () => {
     const [formulario, setFormulario] = useState({
         nombre: '',
         correo: '',
@@ -29,7 +29,7 @@ function App() {
     });
 
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
-
+    const navigate = useNavigate(); // Obtener la función de navegación
 
     useEffect(() => {
         const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
@@ -37,27 +37,22 @@ function App() {
             setProductosEnCarrito(productosGuardados);
         }
     }, []); // Se ejecuta solo una vez al montar el componente
-    
-    
-    const navigate = useNavigate(); // Obtener la función de navegación
-    
+
     const agregarAlCarrito = (producto) => {
-        
-    
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-    
         navigate('/carrito'); // Redirigir al componente del Carrito
     };
-    
-    
 
     const vaciarCarrito = () => {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
     };
+
+    
+
 
     return (
         <Router>
