@@ -39,10 +39,10 @@ function App() {
     }, []); // Se ejecuta solo una vez al montar el componente
     
     
-
-
+    const navigate = useNavigate(); // Obtener la función de navegación
+    
     const agregarAlCarrito = (producto) => {
-        const navigate = useNavigate(); // Obtener la función de navegación
+        
     
         const nuevosProductos = [...productosEnCarrito, producto];
         setProductosEnCarrito(nuevosProductos);
