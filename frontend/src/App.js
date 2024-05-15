@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate} from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import Header from './componentes/Header';
 import Navegation from './componentes/Navegation';
@@ -20,22 +20,13 @@ import Microfonogamer from './productos/Microfonogamer';
 import Headsetgamer from './productos/Headsetgamer';
 import './App.css';
 
-const App = () => {
-    const [formulario, setFormulario] = useState({
-        nombre: '',
-        correo: '',
-        celular: '',
-        mensaje: ''
-    });
-
+function App() {
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
     const navigate = useNavigate(); // Obtener la función de navegación
 
     useEffect(() => {
-        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito'));
-        if (productosGuardados) {
-            setProductosEnCarrito(productosGuardados);
-        }
+        const productosGuardados = JSON.parse(localStorage.getItem('productosEnCarrito')) || [];
+        setProductosEnCarrito(productosGuardados);
     }, []); // Se ejecuta solo una vez al montar el componente
 
     const agregarAlCarrito = (producto) => {
@@ -50,9 +41,6 @@ const App = () => {
         setProductosEnCarrito([]);
         localStorage.removeItem('productosEnCarrito');
     };
-
-    
-
 
     return (
         <Router>
@@ -73,8 +61,6 @@ const App = () => {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/formEnviado" element={<FormEnviado />} />
                     <Route path="/compraConfirmada" element={<Compraconfirmada />} />
-
-                    
                 </Routes>
                 <BotonWha />
                 <Footer />
