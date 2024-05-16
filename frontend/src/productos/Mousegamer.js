@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Mousegamer({ agregarAlCarrito }) {
     const productos = [
@@ -8,6 +9,8 @@ function Mousegamer({ agregarAlCarrito }) {
         { id: 'prod_PtsW8O6NcexAlU', nombre: 'MOUSE GAMER 4', precio: 899, imagen: '../imagenes/productos/mouseGamer4.jpg' },
         { id: 'prod_PtsZQukZybkPDy', nombre: 'MOUSE GAMER 5', precio: 999, imagen: '../imagenes/productos/mouseGamer5.jpeg' },
     ];
+
+    const navigate = useNavigate();
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);

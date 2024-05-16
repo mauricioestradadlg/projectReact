@@ -1,6 +1,6 @@
-
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function Microfonogamer({ agregarAlCarrito }) {
     const productos = [
@@ -10,6 +10,8 @@ function Microfonogamer({ agregarAlCarrito }) {
         { id: 'prod_PuDfc3y7Dd9JRi', nombre: 'MICROFONO GAMER 4', precio: 1299, imagen: '../imagenes/productos/microfonoGamer4.jpg' },
         { id: 'prod_PuDglHPEsmcQPm', nombre: 'MICROFONO GAMER 5', precio: 1399, imagen: '../imagenes/productos/microfonoGamer5.jpg' },
     ];
+
+    const navigate = useNavigate();
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);

@@ -1,8 +1,6 @@
-
-
-
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function Monitorgamer({ agregarAlCarrito }) {
     const productos = [
@@ -12,6 +10,8 @@ function Monitorgamer({ agregarAlCarrito }) {
         { id: 'prod_PuDymHjkqFQ8kc', nombre: 'MONITOR GAMER 4', precio: 4599, imagen: '../imagenes/productos/monitorGamer4.jpg' },
         { id: 'prod_PuDyIeiZ6hojYi', nombre: 'MONITOR GAMER 5', precio: 4999, imagen: '../imagenes/productos/monitorGamer5.jpg' },
     ];
+
+    const navigate = useNavigate();
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);

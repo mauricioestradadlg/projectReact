@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Tecladogamer({ agregarAlCarrito }) {
     const productos = [
@@ -8,6 +9,8 @@ function Tecladogamer({ agregarAlCarrito }) {
         { id: 'prod_PuDV1h90zWq4bK', nombre: 'TECLADO GAMER 4', precio: 1299, imagen: '../imagenes/productos/tecladoGamer4.jpg' },
         { id: 'prod_PuDWxMBNNZ1vvZ', nombre: 'TECLADO GAMER 5', precio: 1399, imagen: '../imagenes/productos/tecladoGamer5.jpg' },
     ];
+
+    const navigate = useNavigate();
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);

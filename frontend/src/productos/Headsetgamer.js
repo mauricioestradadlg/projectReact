@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Headsetgamer({ agregarAlCarrito }) {
     const productos = [
@@ -8,6 +9,8 @@ function Headsetgamer({ agregarAlCarrito }) {
         { id: 'prod_PuDfc3y7Dd9JRi', nombre: 'HEADSET GAMER 4', precio: 1299, imagen: '../imagenes/productos/headsetGamer4.jpeg' },
         { id: 'prod_PuDglHPEsmcQPm', nombre: 'HEADSET GAMER 5', precio: 1399, imagen: '../imagenes/productos/headsetGamer5.jpeg' },
     ];
+
+    const navigate = useNavigate();
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);
