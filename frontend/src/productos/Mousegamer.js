@@ -11,6 +11,7 @@ function Mousegamer({ agregarAlCarrito }) {
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);
+        navigate('/carrito');
     };
 
     return (

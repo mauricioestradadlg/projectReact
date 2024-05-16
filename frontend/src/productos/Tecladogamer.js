@@ -11,6 +11,7 @@ function Tecladogamer({ agregarAlCarrito }) {
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);
+        navigate('/carrito');
     };
 
     return (

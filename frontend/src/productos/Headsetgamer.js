@@ -11,6 +11,7 @@ function Headsetgamer({ agregarAlCarrito }) {
 
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);
+        navigate('/carrito');
     };
 
     return (
