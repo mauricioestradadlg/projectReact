@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PCgamer({ agregarAlCarrito }) {
     const productos = [
@@ -9,8 +10,11 @@ function PCgamer({ agregarAlCarrito }) {
         { id: 'prod_PtsBFgIViE15tH', nombre: 'PC GAMER 5', precio: 5999, imagen: '../imagenes/productos/pcGamer5.jpg' },
     ];
 
+    const navigate = useNavigate();
+
     const handleClickAgregar = (producto) => {
         agregarAlCarrito(producto);
+        navigate('/carrito');
     };
 
     return (
