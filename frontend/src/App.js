@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 import axios from 'axios';
 import Header from './componentes/Header';
 import Navegation from './componentes/Navegation';
@@ -43,7 +43,6 @@ function App() {
         setProductosEnCarrito(nuevosProductos);
         localStorage.setItem('productosEnCarrito', JSON.stringify(nuevosProductos));
         alert('Producto agregado al carrito');
-        navigate('/carrito'); // Redirigir al componente del Carrito
     };
 
     const vaciarCarrito = () => {
