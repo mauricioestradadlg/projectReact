@@ -103,8 +103,8 @@ app.post('/checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'https://projectreact-tfr0.onrender.com/compraConfirmada', // Actualiza esta URL
-            cancel_url: 'https://projectreact-tfr0.onrender.com/carrito',
+            success_url: 'https://projectreact-tfr0.onrender.com/', // Actualiza esta URL
+            cancel_url: 'https://projectreact-tfr0.onrender.com/',
         });
         
 
